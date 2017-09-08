@@ -1,0 +1,208 @@
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/home/lebang/Rn/js/App.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+    _component: {}
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: '/home/lebang/Rn/js/App.js',
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+    return function (Component) {
+        return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+}
+
+var RnInterface = _reactNative.NativeModules.RnInterface;
+
+var flatListData = [{
+    key: 'a',
+    text: '444ss'
+}, {
+    key: 'b',
+    text: '333'
+}, {
+    key: 'c',
+    text: '2222'
+}, {
+    key: 'd',
+    text: '111'
+}];
+
+var _component = _wrapComponent('_component')(function (_Component) {
+    _inherits(_class2, _Component);
+
+    function _class2(props) {
+        _classCallCheck(this, _class2);
+
+        var _this = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
+
+        _this._keyExtractor = function (item, index) {
+            return item.key;
+        };
+
+        _this.state = {
+            TEXT: '',
+            BTNPRESS: false
+        };
+        return _this;
+    }
+
+    _createClass(_class2, [{
+        key: 'setTEXT',
+        value: function setTEXT(text) {
+            this.setState({ TEXT: text });
+        }
+    }, {
+        key: 'setBTNPRESS',
+        value: function setBTNPRESS(press) {
+            this.setState({ BTNPRESS: press });
+        }
+    }, {
+        key: 'buttonPressed',
+        value: function buttonPressed() {
+            if (this.state.BTNPRESS) {
+                _reactNative.NativeModules.RnInterface.HandlerMessage(this.state.TEXT);
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react3.default.createElement(
+                _reactNative.View,
+                { style: styles.container, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 41
+                    }
+                },
+                _react3.default.createElement(_reactNative.TextInput, {
+                    style: { height: 40, width: 200, borderColor: 'gray', borderWidth: 1 },
+                    placeholder: 'text enter',
+                    onChangeText: function onChangeText(text) {
+                        _this2.setTEXT(text);
+                    },
+                    value: this.state.TEXT, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 42
+                    }
+                }),
+                _react3.default.createElement(
+                    _reactNative.Text,
+                    {
+                        style: { height: 40, width: 100, borderColor: 'gray', borderWidth: 1, fontSize: 26 },
+                        onPress: this.setBTNPRESS(!this.state.BTNPRESS), __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 47
+                        }
+                    },
+                    ' button '
+                )
+            );
+        }
+    }, {
+        key: 'ListHeaderComponent',
+        value: function ListHeaderComponent() {
+            return _react3.default.createElement(
+                _reactNative.Text,
+                {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 66
+                    }
+                },
+                ' header '
+            );
+        }
+    }, {
+        key: 'renderItem',
+        value: function renderItem(_ref) {
+            var _this3 = this;
+
+            var item = _ref.item,
+                index = _ref.index;
+
+            return _react3.default.createElement(
+                _reactNative.View,
+                {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 72
+                    }
+                },
+                _react3.default.createElement(
+                    _reactNative.Text,
+                    { style: styles.item, onPress: function onPress() {
+                            return _this3.buttonPressed();
+                        }, __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 73
+                        }
+                    },
+                    item.text
+                )
+            );
+        }
+    }]);
+
+    return _class2;
+}(_react2.Component));
+
+exports.default = _component;
+
+
+var styles = _reactNative.StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ffffff'
+    },
+    txt: {
+        width: 200,
+        height: 40
+    },
+    modal: {
+        margin: 40,
+        alignItems: 'center',
+        backgroundColor: '#f00'
+    },
+    item: {
+        padding: 10,
+        fontSize: 18,
+        height: 44
+    },
+    text: {
+        fontSize: 20,
+        color: '#333333'
+    }
+});
