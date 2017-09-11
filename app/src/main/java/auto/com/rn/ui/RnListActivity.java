@@ -1,4 +1,4 @@
-package auto.com.rn;
+package auto.com.rn.ui;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactInstanceManager;
@@ -17,10 +17,10 @@ import java.util.List;
 /**
  * Copyright (C) 2016, Xiaomi Inc. All rights reserved.
  */
-public class RnActivity extends ReactActivity {
+public class RnListActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
-        return "helloReact";
+        return "flatList";
     }
 
 }

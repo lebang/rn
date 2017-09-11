@@ -5,7 +5,7 @@ let RnInterface = NativeModules.RnInterface;
 
 var flatListData = [{
         key: 'a',
-        text: '444ss'
+        text: '444'
     },{
         key: 'b',
         text: '333'
@@ -21,60 +21,36 @@ export default class extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            TEXT:'',
-            BTNPRESS:false
+            TEXT:''
         }
     }
-    setTEXT(text){
+    setText(text){
         this.setState({TEXT: text})
     }
-    setBTNPRESS(press){
-        this.setState({BTNPRESS:press});
-    }
+
     buttonPressed() {
-        if (this.state.BTNPRESS){
-            NativeModules.RnInterface.HandlerMessage(this.state.TEXT);
-        }
+        NativeModules.RnInterface.HandlerMessage(this.state.TEXT);
+    }
+    goList() {
+        NativeModules.RnInterface.GoListActivity();
     }
     render() {
         return (
            <View style={styles.container}>
-                <TextInput
-                    style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1,}}
-                    placeholder={'text enter'}
-                    onChangeText={(text) => {this.setTEXT(text)}}
-                    value={this.state.TEXT}/>
-                <Text
+               <TextInput
+                   style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1,}}
+                   placeholder={'text enter'}
+                   onChangeText={(text) => {this.setText(text)}}
+                   value={this.state.TEXT}/>
+               <Text
+                   style={{height: 40, width: 100, borderColor: 'gray', borderWidth: 1, fontSize: 26}}
+                   onPress={ () => this.buttonPressed()}> button </Text>
+               <Text
                     style={{height: 40, width: 100, borderColor: 'gray', borderWidth: 1, fontSize: 26}}
-                    onPress={this.setBTNPRESS(!this.state.BTNPRESS)}> button </Text>
+                    onPress={() => this.goList()}> goList </Text>
            </View>
         )
     }
-
-//                 <FlatList
-//                    data={flatListData}
-//                    keyExtractor={this._keyExtractor}
-//                    ListHeaderComponent={this.ListHeaderComponent.bind(this)}
-//                    renderItem={this.renderItem.bind(this)}
-//                />
-//                <Text onPress={this.buttonPressed}> button press </Text>
-
-    _keyExtractor = (item, index) => item.key
-
-    ListHeaderComponent() {
-        return (
-             <Text > header </Text>
-        )
-    }
-
-    renderItem({item, index}) {
-        return (
-            <View >
-                <Text style={styles.item} onPress={() => this.buttonPressed()}>{item.text}</Text>
-            </View>
-        )
-    }
-
 }
 
 const styles = StyleSheet.create({
@@ -83,20 +59,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffffff'
-  },
-  txt:{
-    width:200,
-    height:40
-  },
-  modal:{
-    margin:40,
-    alignItems: 'center',
-    backgroundColor:'#f00'
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
   },
   text: {
     fontSize: 20,

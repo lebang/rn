@@ -1,101 +1,81 @@
-//'use strict';
-//import React, { Component } from 'react'
-//import {
-//    View,
-//    Image,
-//    Dimensions,
-//    ScrollView,
-//    Text,
-//    StyleSheet,
-//    TouchableOpacity,
-//    Button,
-//    FlatList,
-//    ActivityIndicator,
-//    RefreshControl,
-//} from 'react-native'
-//
-//var listData = [{
-//        key: 'a',
-//        text: '444'
-//    },{
-//        key: 'b',
-//        text: '333'
-//    },{
-//        key: 'c',
-//        text: '2222'
-//    },{
-//        key: 'd',
-//        text: '111'
-//    }];
-//
-//export default class extends Component{
-//    constructor(props) {
-//        super(props);
-//        this.state = { };
-//    }
-//
-//    render() {
-////        const { params } = this.props.state;
-//        return (
-//            <View style={styles.container}>
-//                <FlatList
-//                    style={styles.title}
-//                    data={listData}
-//                    ListHeaderComponent={this.ListHeaderComponent.bind(this)}
-//                    renderItem={this.renderItem.bind(this)}
-//                    keyExtractor={this._keyExtractor}
-//                    refreshControl={
-//                        <RefreshControl refreshing={true} />
-//                    }
-//                />
-//            </View>
-//        )
-//    }
-//
-//    _keyExtractor = (item, index) => item.key; //为给定的item生成一个不重复的key
-//
-//    componentDidMount() {}
-//
-//    ListHeaderComponent() { //列表头部
-//        return (
-//            <DetailsHeadItem titleName="学习" unitName="007" />
-//        )
-//    }
-//
-//    renderItem({item, index}) {//列表项
-//        return (
-//            <TouchableOpacity key={index} activeOpacity={1} onPress={this.clickItem.bind(this, item, index)}>
-//                <DetaileRowItem />
-//            </TouchableOpacity>
-//        )
-//    }
-//
-//
-//    renderItemSeparator(){//绘制列表的分割线
-//
-//    }
-//
-//    clickItem(item, index) {
-//        alert(index)
-//    }
-//
-//    const styles = StyleSheet.create({
-//        container: {
-//            flex: 1,
-//            flexDirection: 'row',
-//            justifyContent: 'center',
-//            alignItems: 'center',
-//            backgroundColor: '#F5FCFF',
-//        },
-//        title: {
-//            fontSize: 15,
-//            color: 'blue',
-//        },
-//        content: {
-//            fontSize: 15,
-//            color: 'black',
-//        }
-//
-//    })
-//
-//}
+import React, { Component } from 'react'
+import { View, Text, StyleSheet, FlatList, TouchableHighlight, NativeModules, TextInput } from 'react-native'
+
+let RnInterface = NativeModules.RnInterface;
+
+var flatListData = [{
+        key: 'a',
+        text: '444'
+    },{
+        key: 'b',
+        text: '333'
+    },{
+        key: 'c',
+        text: '2222'
+    },{
+        key: 'd',
+        text: '111'
+    }];
+
+export default class extends Component {
+    constructor(props) {
+        super(props)
+    }
+    buttonPressed(msg) {
+        NativeModules.RnInterface.HandlerMessage(msg);
+    }
+    render() {
+        return (
+           <View style={styles.container}>
+               <FlatList
+                  data={flatListData}
+                  keyExtractor={this._keyExtractor}
+                  ListHeaderComponent={this.ListHeader.bind(this)}
+                  renderItem={this.renderItem.bind(this)}
+                  ListFooterComponent={this.ListFooter.bind(this)}
+                  ItemSeparatorComponent={this.ItemSeparator.bind(this)}
+              />
+           </View>
+        )
+    }
+
+    _keyExtractor = (item) => item.key
+
+    ListHeader() {
+        return (
+             <Text> header </Text>
+        )
+    }
+    ListFooter() {
+        return(
+            <Text> footer </Text>
+        )
+    }
+    ItemSeparator() {
+        return (
+            <View style={{height:2,backgroundColor:'yellow'}}/>
+        );
+    }
+    renderItem({item, index}) {
+        return (
+            <Text style={styles.item} onPress={() => this.buttonPressed(item.text)}>{item.text}</Text>
+        )
+    }
+
+
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    backgroundColor: '#ffffff'
+  },
+  item: {
+    flex: 1,
+    height: 40,
+    fontSize: 18,
+    textAlign: 'center',
+    backgroundColor: '#999999'
+  }
+})
