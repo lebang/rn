@@ -14,7 +14,7 @@ import auto.com.rn.interfaces.RnInterface;
 /**
  * Copyright (C) 2016, Xiaomi Inc. All rights reserved.
  */
-public class RnPackage implements com.facebook.react.ReactPackage {
+public class RnPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> moduleList = new ArrayList<>();

@@ -5,13 +5,9 @@ import com.facebook.react.common.LifecycleState;
 import com.facebook.react.shell.MainReactPackage;
 
 import android.app.Application;
-import android.content.Context;
 
 import auto.com.rn.interfaces.RnPackage;
 
-/**
- * Copyright (C) 2016, Xiaomi Inc. All rights reserved.
- */
 public class RnInstanceManager {
     private static volatile ReactInstanceManager sInstanceManager;
 

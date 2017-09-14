@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/rn_main"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="Hello World!"
-    />
+
 
 
     <com.facebook.react.ReactRootView
             android:id="@+id/rnview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="400dp">
 
     </com.facebook.react.ReactRootView>
+
+    <LinearLayout
+            android:id="@+id/anview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <EditText
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:layout_height="30dp"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="Hello World!"
+        />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="Hello World!"
+        />
+
+    </LinearLayout>
+
+
 </LinearLayout>

@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import auto.com.rn.ui.RnListActivity;
 
-/**
- * Copyright (C) 2016, Xiaomi Inc. All rights reserved.
- */
 public class RnInterface extends ReactContextBaseJavaModule {
 
     private static final String TAG = "RnInterface";
