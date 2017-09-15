@@ -1,26 +1,30 @@
 package auto.com.rn.ui;
 
-import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactInstanceManager;
-import com.facebook.react.ReactPackage;
-import com.facebook.react.ReactRootView;
-import com.facebook.react.shell.MainReactPackage;
-
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.widget.LinearLayout;
 
-import java.util.Arrays;
-import java.util.List;
+import auto.com.rn.preload.PreRnActivity;
+import auto.com.rn.preload.PreLoadRn;
 
 /**
  * Copyright (C) 2016, Xiaomi Inc. All rights reserved.
  */
-public class RnListActivity extends ReactActivity {
+public class RnListActivity extends PreRnActivity {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+    }
+
     @Override
     protected String getMainComponentName() {
         return "flatList";
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreLoadRn.deatchView("flatList");
+    }
 }

@@ -7,15 +7,20 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.react.modules.network.ReactCookieJarContainer;
+import com.facebook.soloader.SoLoader;
 import com.facebook.stetho.Stetho;
 
 import auto.com.rn.hotupdate.RnConstants;
 import auto.com.rn.interfaces.RnPackage;
+import auto.com.rn.preload.PreLoadRn;
+import auto.com.rn.ui.RegisterActivity;
+import auto.com.rn.ui.RnListActivity;
 import okhttp3.OkHttpClient;
 import com.facebook.react.modules.network.OkHttpClientProvider;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import java.util.Arrays;
@@ -27,6 +32,10 @@ public class MainApplication extends Application implements ReactApplication {
 
     private static MainApplication instance;
     public static Context appContext;
+    //APP中所有的RN页面（key是注册名，value是context）
+    public static HashMap<String, Class<?>> RNMAP = new HashMap();
+    //传递到RN页的参数
+    public static String prams = "";
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
@@ -68,6 +77,22 @@ public class MainApplication extends Application implements ReactApplication {
         initStetho();
         instance = this;
         appContext = getApplicationContext();
+        this.initRNMAP();
+        SoLoader.init(this, false);
+    }
+
+    /**
+     * 此处手动添加APP中的所有RN页面对应的注册名和Activity
+     */
+    private void initRNMAP() {
+        MainApplication.RNMAP.put("register", RegisterActivity.class);
+        MainApplication.RNMAP.put("flatList", RnListActivity.class);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();// 程序终止的时候执行
+        PreLoadRn.clear();
     }
 
     public String getAppPackageName() {
